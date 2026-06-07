@@ -2441,6 +2441,10 @@ footer .fa-heart {
     object-position: center top;
 }
 
+.project-card-litit .project-gallery-media {
+    object-position: center top;
+}
+
 .project-card-deped::after {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 16%, rgba(0, 0, 0, 0.94) 100%);
 }
