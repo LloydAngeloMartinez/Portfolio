@@ -26,7 +26,7 @@
     ],
     [
       "MAPSantos Construction",
-      1220,
+      120,
       655,
       "SCHOOL",
       "An online construction management platform for tracking projects, budget, inventory, and employees.",
