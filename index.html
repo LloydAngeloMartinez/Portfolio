@@ -223,301 +223,317 @@
 
   <!-- PROJECTS -->
   <section id="projects">
-    <div class="container">
-      <div class="reveal" style="margin-bottom: 2rem">
+    <div class="projects-glow" aria-hidden="true"></div>
+    <div class="container projects-container">
+      <!-- Section Header -->
+      <header class="projects-header reveal">
         <div class="section-tag">Portfolio</div>
         <h2 class="section-title">Featured <span>Projects</span></h2>
         <p class="section-sub">
           Recent projects built from scratch, demonstrating my skills as a full-stack developer.
         </p>
-      </div>
-      <div class="filter-bar reveal">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="desktop">Desktop App</button>
-        <button class="filter-btn" data-filter="edu">Education</button>
-        <button class="filter-btn" data-filter="web">Web App</button>
-        <button class="filter-btn" data-filter="portal">Portal</button>
-        <button class="filter-btn" data-filter="iot">IoT</button>
-      </div>
+      </header>
+
+      <!-- Filter Bar -->
+      <nav class="filter-bar reveal" aria-label="Project category filters">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" data-filter="desktop" aria-pressed="false">Desktop App</button>
+        <button class="filter-btn" data-filter="edu" aria-pressed="false">Education</button>
+        <button class="filter-btn" data-filter="web" aria-pressed="false">Web App</button>
+        <button class="filter-btn" data-filter="portal" aria-pressed="false">Portal</button>
+        <button class="filter-btn" data-filter="iot" aria-pressed="false">IoT</button>
+      </nav>
+
+      <!-- Projects Grid -->
       <div class="projects-grid" id="projects-grid">
-        <div class="glass-card project-card project-card-lead project-card-cabcy reveal delay-2" data-cat="portal">
-          <img class="project-gallery-media" src="assets/img/maps-cons.png"
-            alt="DepEd CabCy Connect landing page interface" />
-          <div class="project-header">
-            <div class="project-icon">
-              <i class="fas fa-building" aria-hidden="true"></i>
-            </div>
-          </div>
-          <div class="project-name">MAPSantos Construction</div>
-          <p class="project-desc">
-            An online construction management platform for tracking projects, budget, inventory, and employees.
-          </p>
-          <div class="project-features">
-            <span class="feature-tag">Project Monitoring</span>
-            <span class="feature-tag">Budget Management</span>
-            <span class="feature-tag">Inventory Tracking</span>
-            <span class="feature-tag">Employee Management</span>
-          </div>
-          <div class="project-stack">
-            <span class="stack-badge">React</span>
-            <span class="stack-badge">Vite</span>
-            <span class="stack-badge">Node.js</span>
-            <span class="stack-badge">MySQL</span>
-          </div>
-          <div class="project-actions">
-            <a href="https://lightskyblue-skunk-361568.hostingersite.com" target="_blank" rel="noopener noreferrer"
-              class="btn project-preview-btn">
-              <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-              <span>Preview Project</span>
-            </a>
-          </div>
-        </div>
 
-        <div class="glass-card project-card project-card-lead project-card-cabcy reveal delay-2" data-cat="portal">
-          <img class="project-gallery-media" src="assets/img/deped-cabcy-connect.png"
-            alt="DepEd CabCy Connect landing page interface" />
-          <div class="project-header">
-            <div class="project-icon">
-              <i class="fas fa-building" aria-hidden="true"></i>
+        <!-- Card 1: MAPSantos – Featured (spans 2 cols on desktop) -->
+        <article class="project-card project-card-featured reveal delay-1" data-cat="portal">
+          <div class="pc-image-wrap">
+            <img class="pc-image" src="assets/img/maps-cons.png"
+              alt="MAPSantos Construction management platform dashboard" loading="lazy" />
+            <div class="pc-image-overlay"></div>
+            <span class="pc-featured-badge">
+              <i class="fas fa-star" aria-hidden="true"></i> Featured
+            </span>
+          </div>
+          <div class="pc-body">
+            <div class="pc-meta">
+              <div class="pc-icon">
+                <i class="fas fa-building" aria-hidden="true"></i>
+              </div>
+              <div class="pc-title-group">
+                <h3 class="pc-title">MAPSantos Construction</h3>
+                <p class="pc-desc">
+                  An online construction management platform for tracking projects, budget, inventory, and employees.
+                </p>
+              </div>
+            </div>
+            <div class="pc-stack">
+              <span class="stack-badge">React</span>
+              <span class="stack-badge">Vite</span>
+              <span class="stack-badge">Node.js</span>
+              <span class="stack-badge">MySQL</span>
+            </div>
+            <div class="pc-actions">
+              <a href="https://lightskyblue-skunk-361568.hostingersite.com" target="_blank" rel="noopener noreferrer"
+                class="pc-btn">
+                <span>Preview Project</span>
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
-          <div class="project-name">DepEd CabCy Connect</div>
-          <p class="project-desc">
-            A digital platform for the Department of Education Cabanatuan City
-            Division, streamlining document tracking, HR services, and asset
-            management with secure role-based workflows.
-          </p>
-          <div class="project-features">
-            <span class="feature-tag">Document Tracking</span>
-            <span class="feature-tag">HR Services</span>
-            <span class="feature-tag">Asset Management</span>
-          </div>
-          <div class="project-stack">
-            <span class="stack-badge">PHP</span>
-            <span class="stack-badge">MySQL</span>
-            <span class="stack-badge">JavaScript</span>
-            <span class="stack-badge">Bootstrap</span>
-          </div>
-          <div class="project-actions">
-            <a href="https://www.depedcabcyconnect.com/" target="_blank" rel="noopener noreferrer"
-              class="btn project-preview-btn">
-              <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-              <span>Preview Project</span>
-            </a>
-          </div>
-        </div>
+        </article>
 
-        <div class="glass-card project-card project-card-graphic project-card-todo reveal delay-1" data-cat="desktop">
-          <img class="project-gallery-media" src="assets/img/todo-app.png"
-            alt="To-Do desktop application task dashboard" />
-          <div class="project-header">
-            <div class="project-icon">
-              <i class="fas fa-desktop" aria-hidden="true"></i>
+        <!-- Card 2: DepEd CabCy Connect -->
+        <article class="project-card reveal delay-2" data-cat="portal">
+          <div class="pc-image-wrap">
+            <img class="pc-image" src="assets/img/deped-cabcy-connect.png"
+              alt="DepEd CabCy Connect portal landing page interface" loading="lazy" />
+            <div class="pc-image-overlay"></div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-meta">
+              <div class="pc-icon">
+                <i class="fas fa-building" aria-hidden="true"></i>
+              </div>
+              <div class="pc-title-group">
+                <h3 class="pc-title">DepEd CabCy Connect</h3>
+                <p class="pc-desc">
+                  A digital platform for the Department of Education Cabanatuan City Division, streamlining document
+                  tracking, HR services, and asset management.
+                </p>
+              </div>
+            </div>
+            <div class="pc-stack">
+              <span class="stack-badge">PHP</span>
+              <span class="stack-badge">MySQL</span>
+              <span class="stack-badge">JavaScript</span>
+              <span class="stack-badge">Bootstrap</span>
+            </div>
+            <div class="pc-actions">
+              <a href="https://www.depedcabcyconnect.com/" target="_blank" rel="noopener noreferrer" class="pc-btn">
+                <span>Preview Project</span>
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
-          <div class="project-name">To-Do Application</div>
-          <p class="project-desc">
-            A desktop to-do application built with Electron.js, featuring a
-            simple interface, local storage for offline access.
-          </p>
-          <div class="project-features">
-            <span class="feature-tag">Local Storage</span>
-            <span class="feature-tag">Native UI</span>
-            <span class="feature-tag">Offline-First</span>
-          </div>
-          <div class="project-stack">
-            <span class="stack-badge">Electron.js</span>
-            <span class="stack-badge">React</span>
-            <span class="stack-badge">HTML/CSS</span>
-          </div>
-          <div class="project-actions">
-            <a href="projects/To-Do App Setup 1.0.0.exe" class="btn project-preview-btn" download>
-              <i class="fas fa-download" aria-hidden="true"></i>
-              <span>Download App</span>
-            </a>
-          </div>
-        </div>
+        </article>
 
-        <div class="glass-card project-card project-card-wide project-card-food reveal delay-2" data-cat="web">
-          <iframe class="project-gallery-media project-gallery-iframe"
-            src="https://lutongbahayfinder.vercel.app/" title="Lutong Bahay Finder live preview" loading="lazy"
-            scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
-          <div class="project-header">
-            <div class="project-icon">
-              <i class="fas fa-utensils" aria-hidden="true"></i>
+        <!-- Card 3: To-Do Application -->
+        <article class="project-card reveal delay-1" data-cat="desktop">
+          <div class="pc-image-wrap">
+            <img class="pc-image" src="assets/img/todo-app.png"
+              alt="To-Do desktop application task dashboard" loading="lazy" />
+            <div class="pc-image-overlay"></div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-meta">
+              <div class="pc-icon">
+                <i class="fas fa-desktop" aria-hidden="true"></i>
+              </div>
+              <div class="pc-title-group">
+                <h3 class="pc-title">To-Do Application</h3>
+                <p class="pc-desc">
+                  A desktop to-do application built with Electron.js, featuring a simple interface and local storage for
+                  offline access.
+                </p>
+              </div>
+            </div>
+            <div class="pc-stack">
+              <span class="stack-badge">Electron.js</span>
+              <span class="stack-badge">React</span>
+              <span class="stack-badge">HTML/CSS</span>
+            </div>
+            <div class="pc-actions">
+              <a href="projects/To-Do App Setup 1.0.0.exe" class="pc-btn" download>
+                <span>Download App</span>
+                <i class="fas fa-download" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
-          <div class="project-name">Lutong Bahay Finder</div>
-          <p class="project-desc">
-            A Filipino home-cooking web app for exploring lutong bahay meal
-            ideas through a fast, mobile-friendly recipe discovery experience.
-          </p>
-          <div class="project-features">
-            <span class="feature-tag">Recipe Discovery</span>
-            <span class="feature-tag">Filipino Meals</span>
-            <span class="feature-tag">Responsive UI</span>
-          </div>
-          <div class="project-stack">
-            <span class="stack-badge">React</span>
-            <span class="stack-badge">Vercel</span>
-            <span class="stack-badge">JavaScript</span>
-          </div>
-          <div class="project-actions">
-            <a href="https://lutongbahayfinder.vercel.app/" target="_blank" rel="noopener noreferrer"
-              class="btn project-preview-btn">
-              <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-              <span>Preview Project</span>
-            </a>
-          </div>
-        </div>
+        </article>
 
-        <div class="glass-card project-card project-card-litit reveal delay-1" data-cat="edu">
-          <img class="project-gallery-media" src="assets/img/lit-it-app.svg"
-            alt="Lit-It landing page with a literary theme book preview" />
-          <div class="project-header">
-            <div class="project-icon">
-              <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+        <!-- Card 4: Lutong Bahay Finder -->
+        <article class="project-card reveal delay-2" data-cat="web">
+          <div class="pc-image-wrap pc-image-wrap--iframe">
+            <iframe class="pc-image pc-iframe"
+              src="https://lutongbahayfinder.vercel.app/" title="Lutong Bahay Finder live preview" loading="lazy"
+              scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <div class="pc-image-overlay"></div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-meta">
+              <div class="pc-icon">
+                <i class="fas fa-utensils" aria-hidden="true"></i>
+              </div>
+              <div class="pc-title-group">
+                <h3 class="pc-title">Lutong Bahay Finder</h3>
+                <p class="pc-desc">
+                  A Filipino home-cooking web app for exploring lutong bahay meal ideas through a fast, mobile-friendly
+                  recipe discovery experience.
+                </p>
+              </div>
+            </div>
+            <div class="pc-stack">
+              <span class="stack-badge">React</span>
+              <span class="stack-badge">Vercel</span>
+              <span class="stack-badge">JavaScript</span>
+            </div>
+            <div class="pc-actions">
+              <a href="https://lutongbahayfinder.vercel.app/" target="_blank" rel="noopener noreferrer" class="pc-btn">
+                <span>Preview Project</span>
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
-          <div class="project-name">LitIt</div>
-          <p class="project-desc">
-            A browser-based literacy practice focused in writing
-            exercises, learner interaction, and topic generation.
-          </p>
-          <div class="project-features">
-            <span class="feature-tag">Practice Mode</span>
-            <span class="feature-tag">Writing Exercises</span>
-            <span class="feature-tag">Learner Interaction</span>
-          </div>
-          <div class="project-stack">
-            <span class="stack-badge">React</span>
-            <span class="stack-badge">Vercel</span>
-            <span class="stack-badge">JavaScript</span>
-          </div>
-          <div class="project-actions">
-            <a href="https://litit.vercel.app/practice" target="_blank" rel="noopener noreferrer"
-              class="btn project-preview-btn">
-              <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-              <span>Preview Project</span>
-            </a>
-          </div>
-        </div>
+        </article>
 
-        <div class="glass-card project-card project-card-girk reveal delay-2" data-cat="edu">
-          <img class="project-gallery-media" src="assets/img/girk-app.png"
-            alt="GIRK gamified interactive reading kit landing page interface" />
-          <div class="project-header">
-            <div class="project-icon">
-              <i class="fas fa-book-open" aria-hidden="true"></i>
+        <!-- Card 5: LitIt -->
+        <article class="project-card reveal delay-3" data-cat="edu">
+          <div class="pc-image-wrap">
+            <img class="pc-image" src="assets/img/lit-it-app.svg"
+              alt="Lit-It literacy practice landing page with a literary theme book preview" loading="lazy" />
+            <div class="pc-image-overlay"></div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-meta">
+              <div class="pc-icon">
+                <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+              </div>
+              <div class="pc-title-group">
+                <h3 class="pc-title">LitIt</h3>
+                <p class="pc-desc">
+                  A browser-based literacy practice focused in writing exercises, learner interaction, and topic
+                  generation.
+                </p>
+              </div>
+            </div>
+            <div class="pc-stack">
+              <span class="stack-badge">React</span>
+              <span class="stack-badge">Vercel</span>
+              <span class="stack-badge">JavaScript</span>
+            </div>
+            <div class="pc-actions">
+              <a href="https://litit.vercel.app/practice" target="_blank" rel="noopener noreferrer" class="pc-btn">
+                <span>Preview Project</span>
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
-          <div class="project-name">GIRK Reading App</div>
-          <p class="project-desc">
-            A gamified interactive reading kit with structured literacy
-            missions, teacher oversight, and guided activities for young
-            readers.
-          </p>
-          <div class="project-features">
-            <span class="feature-tag">Reading Missions</span>
-            <span class="feature-tag">Teacher Tools</span>
-            <span class="feature-tag">Progress Tracking</span>
-          </div>
-          <div class="project-stack">
-            <span class="stack-badge">React</span>
-            <span class="stack-badge">Supabase</span>
-            <span class="stack-badge">Web Speech API</span>
-          </div>
-          <div class="project-actions">
-            <a href="https://girk.vercel.app/" target="_blank"
-              rel="noopener noreferrer" class="btn project-preview-btn">
-              <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-              <span>Preview Project</span>
-            </a>
-          </div>
-        </div>
+        </article>
 
-        <div class="glass-card project-card project-card-wide project-card-thesis reveal delay-3" data-cat="edu">
-          <iframe class="project-gallery-media project-gallery-iframe"
-            src="https://lloydangelomartinez.github.io/thesis-monitoring-system/"
-            title="Thesis Monitoring System live preview" loading="lazy" scrolling="no" tabindex="-1"
-            aria-hidden="true"></iframe>
-          <div class="project-header">
-            <div class="project-icon">
-              <i class="fas fa-chart-line" aria-hidden="true"></i>
+        <!-- Card 6: GIRK Reading App -->
+        <article class="project-card reveal delay-1" data-cat="edu">
+          <div class="pc-image-wrap">
+            <img class="pc-image" src="assets/img/girk-app.png"
+              alt="GIRK gamified interactive reading kit landing page interface" loading="lazy" />
+            <div class="pc-image-overlay"></div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-meta">
+              <div class="pc-icon">
+                <i class="fas fa-book-open" aria-hidden="true"></i>
+              </div>
+              <div class="pc-title-group">
+                <h3 class="pc-title">GIRK Reading App</h3>
+                <p class="pc-desc">
+                  A gamified interactive reading kit with structured literacy missions, teacher oversight, and guided
+                  activities for young readers.
+                </p>
+              </div>
+            </div>
+            <div class="pc-stack">
+              <span class="stack-badge">React</span>
+              <span class="stack-badge">Supabase</span>
+              <span class="stack-badge">Web Speech API</span>
+            </div>
+            <div class="pc-actions">
+              <a href="https://girk.vercel.app/" target="_blank" rel="noopener noreferrer" class="pc-btn">
+                <span>Preview Project</span>
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
-          <div class="project-name">Thesis Monitoring System</div>
-          <p class="project-desc">
-            A collaborative thesis workspace for tracking research milestones,
-            managing documents, and coordinating defenses with advisors.
-          </p>
-          <div class="thesis-status" aria-label="System features">
-            <span><i class="fas fa-check-circle" aria-hidden="true"></i> Progress
-              Tracking</span>
-            <span><i class="fas fa-file-alt" aria-hidden="true"></i> Document
-              Hub</span>
-            <span><i class="fas fa-calendar-check" aria-hidden="true"></i>
-              Defense Scheduling</span>
-          </div>
-          <div class="project-features">
-            <span class="feature-tag">User Management</span>
-            <span class="feature-tag">Document Sharing</span>
-            <span class="feature-tag">Email Verification</span>
-            <span class="feature-tag">Scheduling</span>
-          </div>
-          <div class="project-stack">
-            <span class="stack-badge">PHP</span>
-            <span class="stack-badge">MySQL</span>
-            <span class="stack-badge">JavaScript</span>
-            <span class="stack-badge">Fetch API</span>
-          </div>
-          <div class="project-actions">
-            <a href="https://lloydangelomartinez.github.io/thesis-monitoring-system/" target="_blank"
-              rel="noopener noreferrer" class="btn project-preview-btn">
-              <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-              <span>Preview Project</span>
-            </a>
-          </div>
-        </div>
+        </article>
 
-        <div class="glass-card project-card project-card-water delay-2" data-cat="iot">
-          <img class="project-gallery-media" src="assets/img/Agua_prototype (2).jpeg"
-            alt="Arduino water level monitoring prototype" />
-          <div class="project-header">
-            <div class="project-icon">
-              <i class="fas fa-tint" aria-hidden="true"></i>
+        <!-- Card 7: Thesis Monitoring System -->
+        <article class="project-card reveal delay-2" data-cat="edu">
+          <div class="pc-image-wrap pc-image-wrap--iframe">
+            <iframe class="pc-image pc-iframe"
+              src="https://lloydangelomartinez.github.io/thesis-monitoring-system/"
+              title="Thesis Monitoring System live preview" loading="lazy" scrolling="no" tabindex="-1"
+              aria-hidden="true"></iframe>
+            <div class="pc-image-overlay"></div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-meta">
+              <div class="pc-icon">
+                <i class="fas fa-chart-line" aria-hidden="true"></i>
+              </div>
+              <div class="pc-title-group">
+                <h3 class="pc-title">Thesis Monitoring System</h3>
+                <p class="pc-desc">
+                  A collaborative thesis workspace for tracking research milestones, managing documents, and coordinating
+                  defenses with advisors.
+                </p>
+              </div>
             </div>
-            <div class="project-links"></div>
+            <div class="pc-stack">
+              <span class="stack-badge">PHP</span>
+              <span class="stack-badge">MySQL</span>
+              <span class="stack-badge">JavaScript</span>
+              <span class="stack-badge">Fetch API</span>
+            </div>
+            <div class="pc-actions">
+              <a href="https://lloydangelomartinez.github.io/thesis-monitoring-system/" target="_blank"
+                rel="noopener noreferrer" class="pc-btn">
+                <span>Preview Project</span>
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </div>
           </div>
-          <div class="project-name">Water Level Monitoring System</div>
-          <p class="project-desc">
-            An Arduino prototype project for monitoring Chico River water
-            levels and sending SMS alerts when readings reach warning
-            thresholds. The system combines sensor input, indicator lights,
-            buzzer alerts, and SMS notification technology.
-          </p>
-          <div class="project-features">
-            <span class="feature-tag">Water Level Sensing</span>
-            <span class="feature-tag">SMS Alerts</span>
-            <span class="feature-tag">Arduino Prototype</span>
-            <span class="feature-tag">Buzzer Warning</span>
+        </article>
+
+        <!-- Card 8: Water Level Monitoring -->
+        <article class="project-card reveal delay-3" data-cat="iot">
+          <div class="pc-image-wrap">
+            <img class="pc-image" src="assets/img/Agua_prototype (2).jpeg"
+              alt="Arduino water level monitoring system prototype hardware" loading="lazy" />
+            <div class="pc-image-overlay"></div>
           </div>
-          <div class="project-stack">
-            <span class="stack-badge">HTML/CSS</span>
-            <span class="stack-badge">PHP</span>
-            <span class="stack-badge">C++</span>
-            <span class="stack-badge">Fritzing</span>
+          <div class="pc-body">
+            <div class="pc-meta">
+              <div class="pc-icon">
+                <i class="fas fa-tint" aria-hidden="true"></i>
+              </div>
+              <div class="pc-title-group">
+                <h3 class="pc-title">Water Level Monitoring</h3>
+                <p class="pc-desc">
+                  An Arduino prototype monitoring Chico River water levels and sending SMS alerts when readings reach
+                  warning thresholds.
+                </p>
+              </div>
+            </div>
+            <div class="pc-stack">
+              <span class="stack-badge">HTML/CSS</span>
+              <span class="stack-badge">PHP</span>
+              <span class="stack-badge">C++</span>
+              <span class="stack-badge">Fritzing</span>
+            </div>
+            <div class="pc-actions">
+              <button onclick="openAguaPreview()" class="pc-btn">
+                <span>View Markups</span>
+                <i class="fas fa-images" aria-hidden="true"></i>
+              </button>
+            </div>
           </div>
-          <div class="project-actions">
-            <button onclick="openAguaPreview()" class="btn project-preview-btn">
-              <i class="fas fa-images" aria-hidden="true"></i>
-              <span>View Markups</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+        </article>
+
+      </div><!-- /projects-grid -->
+    </div><!-- /container -->
   </section>
+
 
   <!-- EXPERIENCE -->
   <section id="experience">

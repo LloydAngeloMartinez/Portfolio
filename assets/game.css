@@ -1,9 +1,11 @@
 :root {
-  --mint: #70ffd1;
-  --lime: #d5ff6f;
-  --ink: #061512;
-  --line: rgba(112, 255, 209, .24);
-  --muted: rgba(231, 255, 248, .68);
+  --mint: #6fcf97;      /* portfolio --accent */
+  --lime: #2fa084;      /* portfolio --secondary */
+  --ink: #050a08;       /* portfolio --text (inverted bg) */
+  --ink2: #0b1410;      /* slightly lighter dark panel */
+  --ink3: #0f1f19;      /* card/panel bg */
+  --line: rgba(31, 111, 95, 0.28);   /* portfolio --primary tinted */
+  --muted: rgba(111, 207, 151, 0.72); /* accent at low opacity */
 }
 
 * {
@@ -31,12 +33,32 @@ canvas {
   height: 100%;
 }
 
+.noscript {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  margin: 0;
+  background: var(--ink);
+  color: #f2fffb;
+  font: 500 16px "Outfit", sans-serif;
+  text-align: center;
+}
+
+.noscript a {
+  color: var(--mint);
+}
+
 .top-hud,
 .mission,
 .profile,
 .controls,
 .prompt,
-.touch-controls {
+.touch-controls,
+.minimap-wrap,
+.skill-toast {
   position: absolute;
   z-index: 3;
 }
@@ -49,7 +71,7 @@ canvas {
   justify-content: space-between;
   align-items: center;
   padding: 20px 28px;
-  background: linear-gradient(#03120fee, transparent);
+  background: linear-gradient(var(--ink2) 60%, transparent);
 }
 
 .brand {
@@ -84,7 +106,7 @@ canvas {
   padding: 9px 12px;
   border: 1px solid var(--line);
   color: var(--mint);
-  background: #031411aa;
+  background: rgba(5, 10, 8, 0.7);
   text-decoration: none;
   font: 700 10px "JetBrains Mono";
 }
@@ -100,7 +122,7 @@ canvas {
   top: 92px;
   padding: 16px;
   border: 1px solid var(--line);
-  background: #061c18dc;
+  background: rgba(11, 20, 16, 0.88);
   backdrop-filter: blur(10px);
 }
 
@@ -139,7 +161,7 @@ em {
 .track {
   height: 4px;
   margin-top: 17px;
-  background: #70ffd11c;
+  background: rgba(31, 111, 95, 0.12);
 }
 
 .track i {
@@ -215,7 +237,7 @@ em {
   transform: translateX(-50%);
   padding: 10px 14px;
   border: 1px solid var(--mint);
-  background: #031411ee;
+  background: rgba(5, 10, 8, 0.94);
   opacity: 0;
   color: white;
   font: 700 11px "JetBrains Mono";
@@ -226,13 +248,120 @@ em {
   opacity: 1;
 }
 
+.minimap-wrap {
+  left: 28px;
+  bottom: 56px;
+  padding: 8px 10px 10px;
+  border: 1px solid var(--line);
+  background: rgba(11, 20, 16, 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.minimap-wrap small {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font: 700 8px "JetBrains Mono";
+  letter-spacing: .14em;
+}
+
+#minimap {
+  display: block;
+  width: 120px;
+  height: 74px;
+  border: 1px solid rgba(31, 111, 95, 0.18);
+}
+
+.skill-toast {
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: 1px solid var(--mint);
+  background: rgba(5, 10, 8, 0.94);
+  color: var(--mint);
+  font: 700 11px "JetBrains Mono";
+  letter-spacing: .08em;
+  transform: translate(-50%, -50%) scale(0.92);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s, transform .2s;
+}
+
+.skill-toast.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.skill-toast i {
+  font-size: 14px;
+}
+
+.quest-brief {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.quest-brief li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.quest-brief i {
+  margin-top: 3px;
+  color: var(--mint);
+  font-size: 12px;
+}
+
+.start-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 16px;
+  margin: 18px 0 22px;
+  color: var(--muted);
+  font: 700 10px "JetBrains Mono";
+}
+
+.start-controls kbd {
+  color: var(--mint);
+}
+
+.overlay#start-screen article > button:not(.close):hover,
+.overlay#start-screen article > button:not(.close):focus-visible,
+.actions a:hover,
+.actions button:hover,
+.top-hud a:hover,
+.close:hover,
+.close:focus-visible {
+  filter: brightness(1.08);
+}
+
+.top-hud a:focus-visible,
+.touch-button:focus-visible,
+.overlay button:focus-visible,
+.actions a:focus-visible,
+.actions button:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+}
+
 .overlay {
   position: absolute;
   inset: 0;
   z-index: 8;
   display: grid;
   place-items: center;
-  background: #02100dba;
+  background: rgba(5, 10, 8, 0.73);
   backdrop-filter: blur(8px);
 }
 
@@ -245,7 +374,7 @@ em {
   width: min(92vw, 510px);
   padding: 32px;
   border: 1px solid var(--line);
-  background: #061c18f5;
+  background: rgba(11, 20, 16, 0.96);
   box-shadow: 0 20px 80px #0006;
 }
 
@@ -368,7 +497,8 @@ em {
     width: 12px
   }
 
-  .controls {
+  .controls,
+  .minimap-wrap {
     display: none
   }
 
@@ -411,7 +541,7 @@ em {
 
   .touch-button {
     border: 1px solid var(--line);
-    background: #031411d9;
+    background: rgba(5, 10, 8, 0.86);
     color: var(--mint);
     touch-action: none;
     -webkit-tap-highlight-color: transparent
@@ -420,7 +550,7 @@ em {
   .touch-button:active,
   .touch-button.active {
     border-color: var(--lime);
-    background: #70ffd12e;
+    background: rgba(31, 111, 95, 0.18);
     color: var(--lime)
   }
 
@@ -486,5 +616,13 @@ em {
     width: 58px;
     height: 58px;
     font-size: 16px
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track i,
+  .prompt,
+  .skill-toast {
+    transition: none;
   }
 }

@@ -2,8 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lloyd Martinez - Full-stack Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Portfolio Quest | Lloyd Martinez</title>
+    <meta
+      name="description"
+      content="Explore the Dev District — collect skill nodes, inspect project terminals, and unlock Lloyd Martinez's contact portal."
+    />
+    <meta name="theme-color" content="#050a08" />
     <link rel="icon" type="image/x-icon" href="me.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
@@ -14,53 +19,84 @@
     <link rel="stylesheet" href="assets/game.css" />
   </head>
   <body>
-    <main class="game-shell">
-      <canvas id="game-canvas" aria-label="Portfolio Quest game world"></canvas>
+    <noscript>
+      <p class="noscript">
+        Portfolio Quest requires JavaScript. Enable it to explore the Dev District,
+        or <a href="index.html">view the classic portfolio</a>.
+      </p>
+    </noscript>
+
+    <main class="game-shell" role="application" aria-label="Portfolio Quest game">
+      <canvas id="game-canvas" tabindex="-1" aria-label="Portfolio Quest game world"></canvas>
+
       <header class="top-hud">
         <div class="brand">
-          <b><i class="fas fa-code" aria-hidden="true"></i></b
-          ><span>PORTFOLIO QUEST<small>LLOYD.EXE // DEV DISTRICT</small></span>
+          <b><i class="fas fa-code" aria-hidden="true"></i></b>
+          <span>
+            PORTFOLIO QUEST
+            <small>LLOYD.EXE // DEV DISTRICT</small>
+          </span>
         </div>
-        <a href="index.html"
-          ><i class="fas fa-arrow-left" aria-hidden="true"></i> CLASSIC MODE</a
-        >
+        <a href="index.html" class="classic-link">
+          <i class="fas fa-arrow-left" aria-hidden="true"></i> CLASSIC MODE
+        </a>
       </header>
-      <section class="mission">
-        <small
-          ><i class="fas fa-crosshairs" aria-hidden="true"></i> ACTIVE
-          MISSION</small
-        >
-        <h1>Collect the stack.<br /><em>Unlock the portal.</em></h1>
-        <div class="track"><i id="progress-fill"></i></div>
+
+      <section class="mission" aria-labelledby="mission-heading">
+        <small>
+          <i class="fas fa-crosshairs" aria-hidden="true"></i> ACTIVE MISSION
+        </small>
+        <h1 id="mission-heading">
+          Collect the stack.<br /><em>Unlock the portal.</em>
+        </h1>
+        <div class="track" role="progressbar" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="skill-progress">
+          <i id="progress-fill"></i>
+        </div>
         <p id="progress-text">0 / 7 SKILLS RECOVERED</p>
       </section>
-      <aside class="profile">
-        <img src="me.webp" alt="Lloyd Martinez" />
-        <strong>LLOYD</strong><small>FULL-STACK BUILDER</small>
+
+      <aside class="profile" aria-label="Player status">
+        <img src="me.webp" alt="Lloyd Martinez" width="42" height="42" />
+        <strong>LLOYD</strong>
+        <small>FULL-STACK BUILDER</small>
         <p>
           <span><i class="fas fa-bolt" aria-hidden="true"></i> SKILLS</span>
           <b id="skill-count">0 / 7</b>
         </p>
         <p>
-          <span
-            ><i class="fas fa-laptop-code" aria-hidden="true"></i>
-            TERMINALS</span
-          >
-          <b id="terminal-count">0 / 4</b>
+          <span>
+            <i class="fas fa-laptop-code" aria-hidden="true"></i> TERMINALS
+          </span>
+          <b id="terminal-count">0 / 5</b>
         </p>
         <p>
-          <span
-            ><i class="fas fa-lock" id="portal-icon" aria-hidden="true"></i>
-            PORTAL</span
-          >
+          <span>
+            <i class="fas fa-lock" id="portal-icon" aria-hidden="true"></i>
+            PORTAL
+          </span>
           <b id="portal-status">LOCKED</b>
         </p>
       </aside>
-      <div class="controls">
-        <i class="fas fa-gamepad" aria-hidden="true"></i> <kbd>WASD</kbd> /
-        <kbd>ARROWS</kbd> MOVE &nbsp; <kbd>E</kbd> INTERACT
+
+      <div class="minimap-wrap" aria-hidden="true">
+        <small>MAP</small>
+        <canvas id="minimap" width="120" height="74"></canvas>
       </div>
-      <div class="prompt" id="prompt" aria-live="polite"></div>
+
+      <div class="controls" aria-label="Keyboard controls">
+        <i class="fas fa-gamepad" aria-hidden="true"></i>
+        <kbd>WASD</kbd> / <kbd>ARROWS</kbd> MOVE &nbsp;
+        <kbd>E</kbd> INTERACT &nbsp;
+        <kbd>ESC</kbd> CLOSE
+      </div>
+
+      <div class="prompt" id="prompt" role="status" aria-live="polite"></div>
+
+      <div class="skill-toast" id="skill-toast" role="status" aria-live="assertive" aria-atomic="true">
+        <i class="fas fa-bolt" aria-hidden="true"></i>
+        <span id="skill-toast-text">SKILL RECOVERED</span>
+      </div>
+
       <section class="touch-controls" aria-label="Touch game controls">
         <div class="dpad">
           <button
@@ -102,29 +138,55 @@
           type="button"
           aria-label="Interact"
         >
-          <i class="fas fa-hand-pointer" aria-hidden="true"></i
-          ><span>INTERACT</span>
+          <i class="fas fa-hand-pointer" aria-hidden="true"></i>
+          <span>INTERACT</span>
         </button>
       </section>
-      <section class="overlay" id="start-screen">
+
+      <section class="overlay" id="start-screen" aria-labelledby="start-heading">
         <article>
-          <small
-            ><i class="fas fa-power-off" aria-hidden="true"></i> SYSTEM
-            ONLINE</small
-          >
-          <h2>ENTER THE<br /><em>DEV DISTRICT</em></h2>
+          <small>
+            <i class="fas fa-power-off" aria-hidden="true"></i> SYSTEM ONLINE
+          </small>
+          <h2 id="start-heading">ENTER THE<br /><em>DEV DISTRICT</em></h2>
           <p>
             Recover seven skill nodes, inspect project terminals, and unlock
             Lloyd's contact portal.
           </p>
-          <button id="start-button">
+          <ul class="quest-brief">
+            <li>
+              <i class="fas fa-bolt" aria-hidden="true"></i>
+              Collect glowing skill nodes across the map
+            </li>
+            <li>
+              <i class="fas fa-laptop-code" aria-hidden="true"></i>
+              Inspect terminals to view real portfolio projects
+            </li>
+            <li>
+              <i class="fas fa-lock-open" aria-hidden="true"></i>
+              Unlock the contact portal after all skills are recovered
+            </li>
+          </ul>
+          <div class="start-controls">
+            <span><kbd>WASD</kbd> / <kbd>ARROWS</kbd> move</span>
+            <span><kbd>E</kbd> interact</span>
+          </div>
+          <button id="start-button" type="button">
             START QUEST <i class="fas fa-arrow-right" aria-hidden="true"></i>
           </button>
         </article>
       </section>
-      <section class="overlay hidden" id="dialog">
+
+      <section
+        class="overlay hidden"
+        id="dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialog-title"
+        aria-describedby="dialog-copy"
+      >
         <article>
-          <button class="close" id="dialog-close" aria-label="Close dialog">
+          <button class="close" id="dialog-close" type="button" aria-label="Close dialog">
             <i class="fas fa-times" aria-hidden="true"></i>
           </button>
           <small id="dialog-label"></small>
@@ -135,6 +197,7 @@
         </article>
       </section>
     </main>
+
     <script src="assets/game.js"></script>
   </body>
 </html>

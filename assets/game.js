@@ -1,10 +1,13 @@
 (() => {
   const canvas = document.getElementById("game-canvas"),
     ctx = canvas.getContext("2d"),
+    minimap = document.getElementById("minimap"),
+    minimapCtx = minimap.getContext("2d"),
     keys = new Set();
   const world = { w: 1800, h: 1100 },
     player = { x: 160, y: 500, speed: 250 },
     camera = { x: 0, y: 0 };
+  const TERMINAL_TOTAL = 5;
   const skills = [
     ["JAVASCRIPT", 440, 260],
     ["PHP", 790, 190],
@@ -82,7 +85,8 @@
     paused = false,
     near = null,
     previous = performance.now(),
-    time = 0;
+    time = 0,
+    toastTimer = 0;
   const $ = (id) => document.getElementById(id),
     dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y),
     clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -98,12 +102,20 @@
       `${(collected.size / skills.length) * 100}%`;
     $("progress-text").textContent = `${collected.size} / 7 SKILLS RECOVERED`;
     $("skill-count").textContent = `${collected.size} / 7`;
-    $("terminal-count").textContent = `${visited.size} / 4`;
+    $("terminal-count").textContent = `${visited.size} / ${TERMINAL_TOTAL}`;
     $("portal-status").textContent = unlocked ? "READY" : "LOCKED";
     $("portal-icon").className = unlocked ? "fas fa-lock-open" : "fas fa-lock";
+    $("skill-progress").setAttribute("aria-valuenow", String(collected.size));
+  }
+  function showSkillToast(skillId) {
+    $("skill-toast-text").textContent = `${skillId} RECOVERED`;
+    $("skill-toast").classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => $("skill-toast").classList.remove("show"), 1800);
   }
   function openDialog(label, title, copy, tags, actions) {
     paused = true;
+    keys.clear();
     $("dialog-label").textContent = label;
     $("dialog-title").textContent = title;
     $("dialog-copy").textContent = copy;
@@ -112,6 +124,7 @@
       actions ||
       '<button data-close><i class="fas fa-arrow-left" aria-hidden="true"></i> RETURN TO MAP</button>';
     $("dialog").classList.remove("hidden");
+    $("dialog-close").focus();
     $("dialog-actions")
       .querySelector("[data-close]")
       ?.addEventListener("click", closeDialog);
@@ -170,6 +183,7 @@
     skills.forEach((s) => {
       if (!collected.has(s.id) && dist(player, s) < 34) {
         collected.add(s.id);
+        showSkillToast(s.id);
         updateUI();
       }
     });
@@ -198,7 +212,7 @@
         camera.y) *
       0.08;
   }
-  function text(s, x, y, c = "#70ffd1") {
+  function text(s, x, y, c = "#6fcf97") {
     ctx.fillStyle = c;
     ctx.font = '700 10px "JetBrains Mono"';
     ctx.fillText(s, x, y);
@@ -211,7 +225,7 @@
   function terminalIcon(type, x, y) {
     ctx.save();
     ctx.translate(x, y);
-    ctx.strokeStyle = "#d5ff6f";
+    ctx.strokeStyle = "#6fcf97";
     ctx.lineWidth = 2;
     if (type === "BOOK") {
       line([
@@ -264,7 +278,7 @@
   function bolt(x, y) {
     ctx.save();
     ctx.translate(x, y);
-    ctx.fillStyle = "#d5ff6f";
+    ctx.fillStyle = "#6fcf97";
     ctx.beginPath();
     ctx.moveTo(2, -11);
     ctx.lineTo(-7, 2);
@@ -279,7 +293,7 @@
   function lock(x, y) {
     ctx.save();
     ctx.translate(x, y);
-    ctx.strokeStyle = collected.size === 7 ? "#d5ff6f" : "#ff8a68";
+    ctx.strokeStyle = collected.size === 7 ? "#6fcf97" : "#e05c3a";
     ctx.lineWidth = 2;
     ctx.strokeRect(-10, -2, 20, 16);
     ctx.beginPath();
@@ -288,12 +302,14 @@
     ctx.restore();
   }
   function render() {
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    // Fill entire canvas first — prevents the "cut" seam at map edges
+    ctx.fillStyle = "#050a08";
+    ctx.fillRect(0, 0, innerWidth, innerHeight);
     ctx.save();
     ctx.translate(-camera.x, -camera.y);
-    ctx.fillStyle = "#071c18";
+    ctx.fillStyle = "#050a08";
     ctx.fillRect(0, 0, world.w, world.h);
-    ctx.strokeStyle = "rgba(112,255,209,.07)";
+    ctx.strokeStyle = "rgba(31,111,95,0.10)";
     for (let x = 0; x < world.w; x += 48) {
       ctx.beginPath();
       ctx.moveTo(x, 0);
@@ -307,14 +323,14 @@
       ctx.stroke();
     }
     blocks.forEach(([x, y, w, h]) => {
-      ctx.fillStyle = "#1d5e4f55";
+      ctx.fillStyle = "rgba(31,111,95,0.15)";
       ctx.fillRect(x, y, w, h);
-      ctx.strokeStyle = "#70ffd133";
+      ctx.strokeStyle = "rgba(31,111,95,0.30)";
       ctx.strokeRect(x, y, w, h);
     });
     terminals.forEach((t) => {
-      ctx.fillStyle = "#70ffd122";
-      ctx.strokeStyle = "#70ffd1";
+      ctx.fillStyle = "rgba(47,160,132,0.12)";
+      ctx.strokeStyle = "#2fa084";
       ctx.fillRect(t.x - 24, t.y - 22, 48, 44);
       ctx.strokeRect(t.x - 24, t.y - 22, 48, 44);
       terminalIcon(t.icon, t.x, t.y);
@@ -324,14 +340,14 @@
       if (collected.has(s.id)) return;
       ctx.beginPath();
       ctx.arc(s.x, s.y, 16 + Math.sin(time * 4) * 3, 0, 7);
-      ctx.fillStyle = "#d5ff6f33";
+      ctx.fillStyle = "rgba(111,207,151,0.18)";
       ctx.fill();
-      ctx.strokeStyle = "#d5ff6f";
+      ctx.strokeStyle = "#6fcf97";
       ctx.stroke();
       bolt(s.x, s.y);
-      text(s.id, s.x - 24, s.y + 35, "#d5ff6f");
+      text(s.id, s.x - 24, s.y + 35, "#6fcf97");
     });
-    ctx.strokeStyle = collected.size === 7 ? "#d5ff6f" : "#ff8a6877";
+    ctx.strokeStyle = collected.size === 7 ? "#6fcf97" : "rgba(224,92,58,0.5)";
     ctx.lineWidth = 4;
     for (let i = 0; i < 3; i++) {
       ctx.beginPath();
@@ -345,9 +361,9 @@
         : "[ LOCK ] CONTACT PORTAL",
       portal.x - 80,
       portal.y + 80,
-      collected.size === 7 ? "#d5ff6f" : "#ff8a68",
+      collected.size === 7 ? "#6fcf97" : "#e05c3a",
     );
-    ctx.fillStyle = "#70ffd1";
+    ctx.fillStyle = "#2fa084";
     ctx.beginPath();
     ctx.moveTo(player.x, player.y - 18);
     ctx.lineTo(player.x + 15, player.y + 14);
@@ -356,6 +372,64 @@
     ctx.fill();
     text("PLAYER_01", player.x - 29, player.y + 32);
     ctx.restore();
+    renderMinimap();
+  }
+  function renderMinimap() {
+    const w = minimap.width,
+      h = minimap.height,
+      sx = w / world.w,
+      sy = h / world.h;
+    minimapCtx.fillStyle = "#050a08";
+    minimapCtx.fillRect(0, 0, w, h);
+    minimapCtx.strokeStyle = "rgba(31,111,95,0.18)";
+    for (let x = 0; x < w; x += 12) {
+      minimapCtx.beginPath();
+      minimapCtx.moveTo(x, 0);
+      minimapCtx.lineTo(x, h);
+      minimapCtx.stroke();
+    }
+    for (let y = 0; y < h; y += 12) {
+      minimapCtx.beginPath();
+      minimapCtx.moveTo(0, y);
+      minimapCtx.lineTo(w, y);
+      minimapCtx.stroke();
+    }
+    blocks.forEach(([x, y, bw, bh]) => {
+      minimapCtx.fillStyle = "rgba(31,111,95,0.28)";
+      minimapCtx.fillRect(x * sx, y * sy, bw * sx, bh * sy);
+    });
+    terminals.forEach((t) => {
+      minimapCtx.fillStyle = visited.has(t.title)
+        ? "rgba(111,207,151,0.85)"
+        : "rgba(47,160,132,0.55)";
+      minimapCtx.fillRect(t.x * sx - 2, t.y * sy - 2, 4, 4);
+    });
+    skills.forEach((s) => {
+      if (collected.has(s.id)) return;
+      minimapCtx.fillStyle = "#6fcf97";
+      minimapCtx.beginPath();
+      minimapCtx.arc(s.x * sx, s.y * sy, 2.5, 0, 7);
+      minimapCtx.fill();
+    });
+    minimapCtx.strokeStyle = collected.size === 7 ? "#6fcf97" : "#e05c3a";
+    minimapCtx.lineWidth = 1.5;
+    minimapCtx.beginPath();
+    minimapCtx.arc(portal.x * sx, portal.y * sy, 4, 0, 7);
+    minimapCtx.stroke();
+    minimapCtx.fillStyle = "#2fa084";
+    minimapCtx.beginPath();
+    minimapCtx.moveTo(player.x * sx, player.y * sy - 3);
+    minimapCtx.lineTo(player.x * sx + 3, player.y * sy + 2);
+    minimapCtx.lineTo(player.x * sx - 3, player.y * sy + 2);
+    minimapCtx.closePath();
+    minimapCtx.fill();
+    const vx = (camera.x + innerWidth / 2) * sx,
+      vy = (camera.y + innerHeight / 2) * sy,
+      vw = innerWidth * sx,
+      vh = innerHeight * sy;
+    minimapCtx.strokeStyle = "rgba(111,207,151,0.45)";
+    minimapCtx.lineWidth = 1;
+    minimapCtx.strokeRect(vx - vw / 2, vy - vh / 2, vw, vh);
   }
   function loop(now) {
     const dt = Math.min((now - previous) / 1000, 0.05);
@@ -383,6 +457,7 @@
   }
   addEventListener("resize", resize);
   addEventListener("keydown", (e) => {
+    if (e.repeat) return;
     keys.add(e.key.toLowerCase());
     if (e.key.toLowerCase() === "e") interact();
     if (e.key === "Escape") closeDialog();
@@ -393,6 +468,7 @@
   $("start-button").onclick = () => {
     started = true;
     $("start-screen").classList.add("hidden");
+    canvas.focus();
   };
   $("dialog-close").onclick = closeDialog;
   resize();

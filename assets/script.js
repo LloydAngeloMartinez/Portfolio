@@ -269,16 +269,22 @@ document.querySelectorAll(".filter-btn").forEach((btn) => {
     btn.addEventListener("click", function () {
         document
             .querySelectorAll(".filter-btn")
-            .forEach((b) => b.classList.remove("active"));
+            .forEach((b) => {
+                b.classList.remove("active");
+                b.setAttribute("aria-pressed", "false");
+            });
         this.classList.add("active");
+        this.setAttribute("aria-pressed", "true");
         const filter = this.dataset.filter;
         document.querySelectorAll(".project-card").forEach((card) => {
             if (filter === "all" || card.dataset.cat === filter) {
                 card.style.display = "";
                 card.style.opacity = "0";
+                card.style.transform = "translateY(16px)";
                 setTimeout(() => {
-                    card.style.transition = "opacity .4s";
+                    card.style.transition = "opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)";
                     card.style.opacity = "1";
+                    card.style.transform = "";
                 }, 50);
             } else {
                 card.style.display = "none";
