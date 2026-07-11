@@ -6,7 +6,10 @@
     <title>Lloyd Martinez - Full-stack Developer</title>
     <link rel="icon" type="image/x-icon" href="me.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Outfit:wght@400;500&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Outfit:wght@400;500&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
     <link rel="stylesheet" href="assets/game.css" />
   </head>
@@ -14,11 +17,19 @@
     <main class="game-shell">
       <canvas id="game-canvas" aria-label="Portfolio Quest game world"></canvas>
       <header class="top-hud">
-        <div class="brand"><b><i class="fas fa-code" aria-hidden="true"></i></b><span>PORTFOLIO QUEST<small>LLOYD.EXE // DEV DISTRICT</small></span></div>
-        <a href="index.html"><i class="fas fa-arrow-left" aria-hidden="true"></i> CLASSIC MODE</a>
+        <div class="brand">
+          <b><i class="fas fa-code" aria-hidden="true"></i></b
+          ><span>PORTFOLIO QUEST<small>LLOYD.EXE // DEV DISTRICT</small></span>
+        </div>
+        <a href="index.html"
+          ><i class="fas fa-arrow-left" aria-hidden="true"></i> CLASSIC MODE</a
+        >
       </header>
       <section class="mission">
-        <small><i class="fas fa-crosshairs" aria-hidden="true"></i> ACTIVE MISSION</small>
+        <small
+          ><i class="fas fa-crosshairs" aria-hidden="true"></i> ACTIVE
+          MISSION</small
+        >
         <h1>Collect the stack.<br /><em>Unlock the portal.</em></h1>
         <div class="track"><i id="progress-fill"></i></div>
         <p id="progress-text">0 / 7 SKILLS RECOVERED</p>
@@ -26,34 +37,96 @@
       <aside class="profile">
         <img src="me.webp" alt="Lloyd Martinez" />
         <strong>LLOYD</strong><small>FULL-STACK BUILDER</small>
-        <p><span><i class="fas fa-bolt" aria-hidden="true"></i> SKILLS</span> <b id="skill-count">0 / 7</b></p>
-        <p><span><i class="fas fa-laptop-code" aria-hidden="true"></i> TERMINALS</span> <b id="terminal-count">0 / 4</b></p>
-        <p><span><i class="fas fa-lock" id="portal-icon" aria-hidden="true"></i> PORTAL</span> <b id="portal-status">LOCKED</b></p>
+        <p>
+          <span><i class="fas fa-bolt" aria-hidden="true"></i> SKILLS</span>
+          <b id="skill-count">0 / 7</b>
+        </p>
+        <p>
+          <span
+            ><i class="fas fa-laptop-code" aria-hidden="true"></i>
+            TERMINALS</span
+          >
+          <b id="terminal-count">0 / 4</b>
+        </p>
+        <p>
+          <span
+            ><i class="fas fa-lock" id="portal-icon" aria-hidden="true"></i>
+            PORTAL</span
+          >
+          <b id="portal-status">LOCKED</b>
+        </p>
       </aside>
-      <div class="controls"><i class="fas fa-gamepad" aria-hidden="true"></i> <kbd>WASD</kbd> / <kbd>ARROWS</kbd> MOVE &nbsp; <kbd>E</kbd> INTERACT</div>
+      <div class="controls">
+        <i class="fas fa-gamepad" aria-hidden="true"></i> <kbd>WASD</kbd> /
+        <kbd>ARROWS</kbd> MOVE &nbsp; <kbd>E</kbd> INTERACT
+      </div>
       <div class="prompt" id="prompt" aria-live="polite"></div>
       <section class="touch-controls" aria-label="Touch game controls">
         <div class="dpad">
-          <button class="touch-button dpad-up" type="button" data-key="arrowup" aria-label="Move up"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
-          <button class="touch-button dpad-left" type="button" data-key="arrowleft" aria-label="Move left"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-          <button class="touch-button dpad-down" type="button" data-key="arrowdown" aria-label="Move down"><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
-          <button class="touch-button dpad-right" type="button" data-key="arrowright" aria-label="Move right"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+          <button
+            class="touch-button dpad-up"
+            type="button"
+            data-key="arrowup"
+            aria-label="Move up"
+          >
+            <i class="fas fa-chevron-up" aria-hidden="true"></i>
+          </button>
+          <button
+            class="touch-button dpad-left"
+            type="button"
+            data-key="arrowleft"
+            aria-label="Move left"
+          >
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button
+            class="touch-button dpad-down"
+            type="button"
+            data-key="arrowdown"
+            aria-label="Move down"
+          >
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <button
+            class="touch-button dpad-right"
+            type="button"
+            data-key="arrowright"
+            aria-label="Move right"
+          >
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
         </div>
-        <button class="touch-button interact-button" id="touch-interact" type="button" aria-label="Interact">
-          <i class="fas fa-hand-pointer" aria-hidden="true"></i><span>INTERACT</span>
+        <button
+          class="touch-button interact-button"
+          id="touch-interact"
+          type="button"
+          aria-label="Interact"
+        >
+          <i class="fas fa-hand-pointer" aria-hidden="true"></i
+          ><span>INTERACT</span>
         </button>
       </section>
       <section class="overlay" id="start-screen">
         <article>
-          <small><i class="fas fa-power-off" aria-hidden="true"></i> SYSTEM ONLINE</small>
+          <small
+            ><i class="fas fa-power-off" aria-hidden="true"></i> SYSTEM
+            ONLINE</small
+          >
           <h2>ENTER THE<br /><em>DEV DISTRICT</em></h2>
-          <p>Recover seven skill nodes, inspect project terminals, and unlock Lloyd's contact portal.</p>
-          <button id="start-button">START QUEST <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+          <p>
+            Recover seven skill nodes, inspect project terminals, and unlock
+            Lloyd's contact portal.
+          </p>
+          <button id="start-button">
+            START QUEST <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </button>
         </article>
       </section>
       <section class="overlay hidden" id="dialog">
         <article>
-          <button class="close" id="dialog-close" aria-label="Close dialog"><i class="fas fa-times" aria-hidden="true"></i></button>
+          <button class="close" id="dialog-close" aria-label="Close dialog">
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
           <small id="dialog-label"></small>
           <h2 id="dialog-title"></h2>
           <p id="dialog-copy"></p>
