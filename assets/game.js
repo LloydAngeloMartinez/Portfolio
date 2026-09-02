@@ -7,7 +7,7 @@
   const world = { w: 1800, h: 1100 },
     player = { x: 160, y: 500, speed: 250 },
     camera = { x: 0, y: 0 };
-  const TERMINAL_TOTAL = 5;
+  const TERMINAL_TOTAL = 4;
   const skills = [
     ["JAVASCRIPT", 440, 260],
     ["PHP", 790, 190],
@@ -44,15 +44,6 @@
       "A digital platform for document tracking, HR services, asset management, and automated workflows.",
       ["PHP", "MySQL", "JavaScript"],
       "https://www.depedcabcyconnect.com/",
-    ],
-    [
-      "Thesis Collaboration",
-      1570,
-      490,
-      "DOCS",
-      "A thesis management system for shared documents, advisor coordination, and defense scheduling.",
-      ["PHP", "MySQL", "Fetch API"],
-      "https://lloydangelomartinez.github.io/thesis-monitoring-system/",
     ],
     [
       "Water Level Monitoring",
